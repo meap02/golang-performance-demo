@@ -40,7 +40,9 @@ func monteCarloPi_run(nodes int, points int) (int, time.Duration) {
 
 // run this function to test the monteCarloPi_run function with multiple nodes and points and output all data to a csv file
 func main() {
-	points := [8]int{100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}
+	//points := [8]int{100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}
+	points := [8]int{1, 10, 100, 1000, 10000, 100000, 1000000, 10000000}
+
 	nodes := [6]int{2, 4, 8, 16, 32, 64}
 
 	file, err := os.Create("output.csv")
@@ -54,7 +56,11 @@ func main() {
 	for _, nodes := range nodes {
 		for _, points := range points {
 			total, time := monteCarloPi_run(nodes, points)
-			csvwriter.Write([]string{fmt.Sprintf("%d", points), fmt.Sprintf("%d", nodes), fmt.Sprintf("%0.8f", 4*float64(total)/float64(points)), fmt.Sprintf("%0.8f", time.Seconds())})
+			if time.Seconds() == 0 {
+				csvwriter.Write([]string{fmt.Sprintf("%d", points), fmt.Sprintf("%d", nodes), fmt.Sprintf("%0.8f", 4*float64(total)/float64(points)), fmt.Sprintf("0.00000000%0.8d", time.Nanoseconds())})
+			} else {
+				csvwriter.Write([]string{fmt.Sprintf("%d", points), fmt.Sprintf("%d", nodes), fmt.Sprintf("%0.8f", 4*float64(total)/float64(points)), fmt.Sprintf("%0.8f", time.Seconds())})
+			}
 			csvwriter.Flush()
 		}
 	}
