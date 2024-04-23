@@ -31,6 +31,8 @@ python_times = (
 
 # Plot
 fig, ax = plt.subplots()
+# Make the size bigger
+fig.set_size_inches(10, 6)
 
 # Plot C++ data with solid lines
 for i in range(len(threads)):
@@ -49,7 +51,6 @@ for i in range(len(threads)):
     ax.plot(
         points, go_times[i], linestyle="-", color="blue"
     )  # Solid blue lines for Go
-
 # Plot Python data with dashed lines
 for i in range(len(threads)):
     ax.scatter(
@@ -59,15 +60,20 @@ for i in range(len(threads)):
         marker="^",
     )
     ax.plot(
-        points, python_times[i], linestyle="--", color="green"
-    )  # Dashed green lines for Python
+        points, python_times[i], linestyle="-", color="green"
+    )  # Solid green lines for Python
 
 ax.set_xscale("log")
 ax.set_yscale("log")
 ax.set_xlabel("Number of Points")
 ax.set_ylabel("Time (seconds)")
 ax.set_title("Comparison of Time vs Number of Points (C++ vs Go vs Python)")
+# ax.set_title("Comparison of Time vs Number of Points for Python")
+
 ax.legend()
 plt.grid(True, which="both", ls="--", lw=0.5)
 plt.tight_layout()
-plt.show()
+# plt.show()
+
+# Save to file 1920x1080
+plt.savefig("visual_all_legend.png", dpi=300)
