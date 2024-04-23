@@ -40,8 +40,7 @@ func monteCarloPi_run(nodes int, points int) (int, time.Duration) {
 
 // run this function to test the monteCarloPi_run function with multiple nodes and points and output all data to a csv file
 func main() {
-	//points := [8]int{100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}
-	points := [8]int{1, 10, 100, 1000, 10000, 100000, 1000000, 10000000}
+	points := [8]int{100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}
 
 	nodes := [6]int{2, 4, 8, 16, 32, 64}
 
