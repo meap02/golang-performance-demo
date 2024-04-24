@@ -25,7 +25,7 @@ func monteCarloPi(c chan int, N int) {
 
 // This function will run the monteCarloPi function in the nodes amount of threads and then sum the total count and keep track of the time that it took
 func monteCarloPi_run(nodes int, points int) (int, time.Duration) {
-	c := make(chan int, 1000)
+	c := make(chan int, 1000) //Channels!
 	var start_time = time.Now()
 
 	total := 0
